@@ -56,8 +56,8 @@
 (defvar whitespace-cleanup-on-save t)
 ;; (setq whitespace-cleanup-on-save nil)
 (add-hook 'before-save-hook
-          (lambda ()
-            (if whitespace-cleanup-on-save (whitespace-cleanup))))
+      (lambda ()
+        (if whitespace-cleanup-on-save (whitespace-cleanup))))
 
 ;; Trash can support
 (setq delete-by-moving-to-trash t)
@@ -69,3 +69,46 @@
 
 ;; zap-up-to-char, forward-to-word, backward-to-word, etc
 ;;(require 'misc)
+
+;; Hide the annoying toolbar (which in Ubuntu 10 cause focus to freeze emacs)
+(tool-bar-mode -1)
+
+;; Highlight the cursor's current line
+(global-hl-line-mode 0)
+
+;; SGML offset
+(setq sgml-basic-offset 4)
+
+;; Set standard indent size
+(setq standard-indent 4)
+
+;; Switch indent to spaces (not sure the difference)
+(setq-default indent-tabs-mode nil)
+
+;; Switch indent to spaces
+(setq indent-tabs-mode nil)
+
+;; Set standard tab size
+(setq default-tab-width 4)
+
+;; Set basic indentation in c-mode (and it's derivatives), and th default tab width
+(setq c-basic-offset 4)
+(setq tab-width 4)
+
+;; Set emacs to scroll text 1 line at a time
+(setq scroll-step 1)
+
+(require 'epa-file)
+(epa-file-enable)
+
+;; Buffers use filename as title
+(setq frame-title-format '("%b"))
+
+;; Copy to cliboard
+(setq x-select-enable-clipboard t)
+(put 'upcase-region 'disabled nil)
+
+;; Show full path in buffer name
+(setq frame-title-format
+      (list (format "%s %%S: %%j " (system-name))
+    '(buffer-file-name "%f" (dired-directory dired-directory "%b"))))
