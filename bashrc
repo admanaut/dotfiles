@@ -1,3 +1,12 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+
+
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+
 ############################################################
 ## Terminal behavior
 ############################################################
@@ -73,6 +82,10 @@ shopt -s checkwinsize
 export PAGER="less"
 export EDITOR="emacs"
 
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+
 ############################################################
 ## History
 ############################################################
@@ -86,7 +99,9 @@ export HISTIGNORE="&:pwd:ls:ll:lal:[bf]g:exit:rm*:sudo rm*"
 # remove duplicates from the history (when a new item is added)
 export HISTCONTROL=erasedups
 # increase the default size from only 1,000 items
-export HISTSIZE=10000
+HISTSIZE=10000
+HISTFILESIZE=2000
+
 
 ############################################################
 ## Aliases
