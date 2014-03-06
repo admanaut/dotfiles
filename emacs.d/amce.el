@@ -11,3 +11,4 @@
 (load "amce/cua")
 (load "amce/html")
 (load "amce/shell")
+(load "amce/flyspell")
