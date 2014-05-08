@@ -45,3 +45,21 @@
     (linum-mode 1)
     (goto-line (read-number "Goto line: ")))
     (linum-mode -1)))
+
+;;
+;; Transpose orgmode table at point, eliminate hlines.
+;;
+(defun org-transpose-table-at-point ()
+  "Transpose orgmode table at point, eliminate hlines."
+  (interactive)
+  (let ((contents (apply #'mapcar* #'list    ;; <== LOB magic imported here
+                         (remove-if-not 'listp  ;; remove 'hline from list
+                                        (org-table-to-lisp))))  ;; signals error if not table
+        )
+    (delete-region (org-table-begin) (org-table-end))
+    (insert (mapconcat (lambda(x) (concat "| " (mapconcat 'identity x " | " ) " |\n" ))
+                       contents
+                       ""))
+    (org-table-align)
+    )
+)
