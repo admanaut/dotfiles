@@ -1,0 +1,3 @@
+[submodule "emacs.d/vendor/web-mode"]
+	path = emacs.d/vendor/web-mode
+	url = https://github.com/fxbois/web-mode.git
