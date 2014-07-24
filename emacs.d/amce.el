@@ -11,5 +11,7 @@
 (load "amce/cua")
 (load "amce/html")
 (load "amce/shell")
+(load "amce/flymake-cursor")
+(load "amce/flymake")
 
-(vendor 'web-mode)
+;;(vendor 'web-mode)
