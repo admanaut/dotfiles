@@ -13,5 +13,6 @@
 (load "amce/shell")
 (load "amce/flymake-cursor")
 (load "amce/flymake")
+(load "amce/markdown-mode")
 
 ;;(vendor 'web-mode)
