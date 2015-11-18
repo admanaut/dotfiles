@@ -21,7 +21,10 @@
     cider
     projectile
     rainbow-delimiters
-    tagedit))
+    tagedit
+
+    magit
+    guide-key))
 
 ;; Fix $PATH in OS X
 (if (eq system-type 'darwin)

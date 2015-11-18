@@ -10,6 +10,9 @@
 (load "amce/shell")
 (load "amce/package")
 (load "amce/ido")
+(load "amce/guide-key")
 
 (vendor 'golden-ratio)
 (vendor 'markdown-mode)
+(load "amce/golden-ratio")
+(load "amce/markdown-mode")
