@@ -1,6 +1,7 @@
 dotfiles
 ========
 
-My dotfiles configuration I use on every system I work on.
+credits
+========
 
-I borrowed (and adapted) them from Ryan McGeary https://github.com/rmm5t/dotfiles.
+inspired by Ryan McGeary https://github.com/rmm5t/dotfiles

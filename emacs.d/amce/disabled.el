@@ -12,3 +12,5 @@
 
 ;; Dired functions
 (put 'dired-find-alternate-file 'disabled nil)
+
+(put 'erase-buffer 'disabled nil)

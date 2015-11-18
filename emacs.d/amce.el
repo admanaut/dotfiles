@@ -1,8 +1,5 @@
 (add-to-list 'load-path "~/.emacs.d/vendor")
 
-;;(setq custom-file "~/.emacs.d/amce/custom.el")
-;;(load custom-file 'noerror)
-
 (load "amce/theme")
 (load "amce/global")
 (load "amce/defuns")
@@ -11,8 +8,8 @@
 (load "amce/cua")
 (load "amce/html")
 (load "amce/shell")
-(load "amce/flymake-cursor")
-(load "amce/flymake")
-(load "amce/markdown-mode")
+(load "amce/package")
+(load "amce/ido")
 
-;;(vendor 'web-mode)
+(vendor 'golden-ratio)
+(vendor 'markdown-mode)
