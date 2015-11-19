@@ -22,6 +22,7 @@
     projectile
     rainbow-delimiters
     tagedit
+    company
 
     magit
     guide-key))
@@ -44,3 +45,13 @@
 ;; initialise exec-path-from-shell
 (when (memq window-system '(mac ns))
   (exec-path-from-shell-initialize))
+
+;; minor modes for clojure-mode
+(add-hook 'clojure-mode-hook #'enable-paredit-mode)
+(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+(add-hook 'clojure-mode-hook #'company-mode)
+
+;; minor modes for cider/cider-repl
+(add-hook 'cider-repl-mode-hook #'company-mode)
+(add-hook 'cider-mode-hook #'company-mode)
+(add-hook 'cider-repl-mode-hook #'paredit-mode)
