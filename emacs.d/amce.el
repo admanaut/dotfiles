@@ -9,7 +9,7 @@
 (load "amce/html")
 (load "amce/shell")
 (load "amce/package")
-(load "amce/ido")
+;(load "amce/ido")
 (load "amce/guide-key")
 
 (vendor 'golden-ratio)

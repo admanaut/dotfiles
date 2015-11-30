@@ -2,7 +2,7 @@
 (require 'package)
 
 (add-to-list 'package-archives
-             '("melpa-stable" . "http://stable.melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
 
 (package-initialize)
 
@@ -25,7 +25,8 @@
     company
 
     magit
-    guide-key))
+    guide-key
+    helm))
 
 ;; Fix $PATH in OS X
 (if (eq system-type 'darwin)
@@ -55,3 +56,16 @@
 (add-hook 'cider-repl-mode-hook #'company-mode)
 (add-hook 'cider-mode-hook #'company-mode)
 (add-hook 'cider-repl-mode-hook #'paredit-mode)
+
+;; company
+;(setq company-idle-delay nil) ; never start completions automatically
+;(global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
+
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;; helm
+(require 'helm-config)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(helm-mode 1)
+(helm-autoresize-mode 1)
