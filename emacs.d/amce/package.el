@@ -69,3 +69,5 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (helm-mode 1)
 (helm-autoresize-mode 1)
+;; use ido for find file
+(add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
