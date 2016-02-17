@@ -14,18 +14,20 @@
 ;; Install manually with M-x package-install
 ;; list of packages to install:
 (defvar active-packages
-  '(paredit
+  '(
+    ;; lisp
+    paredit
+    rainbow-delimiters
+
+    ;; clojure
     clojure-mode
     clojure-mode-extra-font-locking
-    clj-refactor
     cider
-    projectile
-    rainbow-delimiters
-    tagedit
     company
 
+    ;; general
+    golden-ratio
     magit
-    guide-key
     helm))
 
 ;; Fix $PATH in OS X
@@ -69,5 +71,14 @@
 (global-set-key (kbd "M-x") 'helm-M-x)
 (helm-mode 1)
 (helm-autoresize-mode 1)
+
 ;; use ido for find file
 (add-to-list 'helm-completing-read-handlers-alist '(find-file . ido))
+
+;; Golden ratio
+(require 'golden-ratio)
+(golden-ratio-mode 1)
+
+;; Magit
+(require 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
