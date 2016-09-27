@@ -24,6 +24,7 @@
     clojure-mode-extra-font-locking
     cider
     company
+    clj-refactor
 
     ;; haskell
     haskell-mode
@@ -31,7 +32,16 @@
     ;; general
     golden-ratio
     magit
-    helm))
+    helm
+
+    ;;golang
+    go-mode
+
+    ;;elm lang
+    elm-mode
+
+    ;; rust lang
+    rust-mode))
 
 ;; Fix $PATH in OS X
 (if (eq system-type 'darwin)
@@ -105,3 +115,13 @@
 (require 'haskell-interactive-mode)
 (require 'haskell-process)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+;; clj-refactor
+(require 'clj-refactor)
+(defun clj-refactor-clojure-mode ()
+    (clj-refactor-mode 1)
+    (yas-minor-mode 1) ; for adding require/use/import statements
+    ;; This choice of keybinding leaves cider-macroexpand-1 unbound
+    (cljr-add-keybindings-with-prefix "C-c C-m"))
+
+(add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode)
