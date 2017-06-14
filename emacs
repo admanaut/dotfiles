@@ -16,16 +16,19 @@
 (setq files '("theme" "global" "defuns" "disabled" "fonts" "cua" "html" "shell" "ido" "packages"))
 
 (rec-load-amce files)
-
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(cider-cljs-boot-repl
+   "(do (require 'adzerk.boot-cljs-repl) (adzerk.boot-cljs-repl/start-repl))")
+ '(cider-cljs-lein-repl
+   "(do (require 'figwheel-sidecar.repl-api) (figwheel-sidecar.repl-api/start-figwheel!) (figwheel-sidecar.repl-api/cljs-repl))")
+ '(geiser-mit-binary "scheme")
  '(package-selected-packages
    (quote
-    (json-mode yaml-mode rust-mode rainbow-delimiters php-mode markdown-mode magit helm haskell-mode golden-ratio go-mode exec-path-from-shell erlang elm-mode dockerfile-mode company clojure-mode-extra-font-locking clj-refactor))))
-
+    (gherkin-mode geiser racket-mode clj-refactor ace-window ido-vertical-mode rainbow-mode restclient json-mode markdown-mode rust-mode elm-mode go-mode helm magit golden-ratio haskell-mode company cider clojure-mode-extra-font-locking clojure-mode rainbow-delimiters paredit exec-path-from-shell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,9 +41,3 @@
  '(rainbow-delimiters-depth-5-face ((t (:foreground "blue1"))))
  '(rainbow-delimiters-depth-6-face ((t (:foreground "dark magenta"))))
  '(rainbow-delimiters-depth-7-face ((t (:foreground "brown")))))
-
-(require 'sql)
-(setq sql-mysql-login-params (append sql-mysql-login-params '(port)))
-
-(setq epg-gpg-program "gpg2")
-(setenv "GPG_AGENT_INFO" nil)
