@@ -33,6 +33,7 @@
     golden-ratio
     magit
     helm
+    json-mode
 
     ;;golang
     go-mode
@@ -41,7 +42,9 @@
     elm-mode
 
     ;; rust lang
-    rust-mode))
+    rust-mode
+
+    erlang))
 
 ;; Fix $PATH in OS X
 (if (eq system-type 'darwin)
@@ -125,3 +128,6 @@
     (cljr-add-keybindings-with-prefix "C-c C-m"))
 
 (add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode)
+
+;; erlang initializations
+(require 'erlang-start)
