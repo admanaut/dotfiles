@@ -13,7 +13,7 @@
     (load-amce (car files))
     (rec-load-amce (cdr files))))
 
-(setq files '("theme" "global" "defuns" "disabled" "fonts" "cua" "html" "shell" "ido" "packages"))
+(setq files '("theme" "global" "defuns" "disabled" "fonts" "cua" "html" "shell" "packages"))
 
 (rec-load-amce files)
 (custom-set-variables

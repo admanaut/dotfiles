@@ -120,7 +120,6 @@
 (global-set-key (kbd "C-x g") 'magit-status)
 
 ;; ====  Helm ====
-
 (require 'helm)
 (require 'helm-config)
 
@@ -149,6 +148,9 @@
 (global-set-key (kbd "C-c f f") 'fiplr-find-file)
 
 ;; ====  Ido ====
+;; InteractivelyDoThings
+(require 'ido)
+(ido-mode t)
 
 (require 'ido-vertical-mode)
 (ido-vertical-mode t)
@@ -225,14 +227,6 @@
 (setq css-indent-offset 2)
 (add-hook 'css-mode #'company-mode)
 
-
-;; ====  Window ====
-
-(global-set-key (kbd "s-<left>")  'windmove-left)
-(global-set-key (kbd "s-<right>") 'windmove-right)
-(global-set-key (kbd "s-<up>")    'windmove-up)
-(global-set-key (kbd "s-<down>")  'windmove-down)
-
 ;; ====  AG ====
 (require 'ag)
 (setq ag-reuse-buffers 't)
@@ -277,11 +271,14 @@
 (require 'eyebrowse)
 (eyebrowse-mode t)
 
-;; ==== Desktop  ====
-(desktop-save-mode 1)
-
 ;; avy
 (require 'avy)
 (global-set-key (kbd "C-;") 'avy-goto-char-timer)
 (global-set-key (kbd "C-:") 'avy-goto-char)
 (global-set-key (kbd "C-'") 'avy-goto-char-2)
+
+;; Markdown
+(autoload 'markdown-mode "markdown-mode"
+  "Major mode for editing Markdown files" t)
+  (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+  (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))

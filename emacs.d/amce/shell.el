@@ -11,9 +11,10 @@
 
 ;;; Fix garbage characters in shell
 (add-hook 'shell-mode-hook
-	 'ansi-color-for-comint-mode-on)
+     'ansi-color-for-comint-mode-on)
 
 ;; Stop shell from echoing all commands
 (defun my-comint-init ()
-   (setq comint-process-echoes t))
+  (setq comint-process-echoes t))
+
 (add-hook 'comint-mode-hook 'my-comint-init)
