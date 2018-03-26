@@ -25,10 +25,12 @@
    "(do (require 'adzerk.boot-cljs-repl) (adzerk.boot-cljs-repl/start-repl))")
  '(cider-cljs-lein-repl
    "(do (require 'figwheel-sidecar.repl-api) (figwheel-sidecar.repl-api/start-figwheel!) (figwheel-sidecar.repl-api/cljs-repl))")
- '(geiser-mit-binary "scheme")
+ '(company-ghc-show-info t)
+ '(geiser-mit-binary "scheme" t)
+ '(haskell-process-type (quote stack-ghci))
  '(package-selected-packages
    (quote
-    (gherkin-mode geiser racket-mode clj-refactor ace-window ido-vertical-mode rainbow-mode restclient json-mode markdown-mode rust-mode elm-mode go-mode helm magit golden-ratio haskell-mode company cider clojure-mode-extra-font-locking clojure-mode rainbow-delimiters paredit exec-path-from-shell))))
+    (dockerfile-mode yaml-mode intero 0blayout psci psc-ide repl-toggle flycheck-purescript purescript-mode company-ghc flycheck flycheck-haskell flymake-haskell-multi scala-mode gherkin-mode geiser racket-mode clj-refactor ace-window ido-vertical-mode rainbow-mode restclient json-mode markdown-mode rust-mode elm-mode go-mode helm magit golden-ratio haskell-mode company cider clojure-mode-extra-font-locking clojure-mode rainbow-delimiters paredit exec-path-from-shell))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

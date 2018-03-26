@@ -33,7 +33,15 @@
     clj-refactor
 
     ;; haskell
-    haskell-mode
+    ;;haskell-mode
+    ;;flycheck-haskell
+    ;;company-ghc
+    intero ;; enhanced haskell mode
+
+    ;; purescript
+    purescript-mode
+    psc-ide
+    psci
 
     ;; general
     golden-ratio
@@ -43,6 +51,8 @@
     restclient
     ace-window
     json-mode
+    flycheck
+    ;;repl-toggle
 
     ;;golang
     go-mode
@@ -98,9 +108,10 @@
 (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'clojure-mode-hook #'company-mode)
 
-;; Company
-;;(setq company-idle-delay nil) ; never start completions automatically
+;; ~~~~~~ Company ~~~~~~
+
 (setq company-idle-delay 0.3)
+;;(setq company-idle-delay nil) ; never start completions automatically
 ;;(global-set-key (kbd "M-TAB") #'company-complete) ; use meta+tab, aka C-M-i, as manual trigger
 
 ;; Magit
@@ -141,11 +152,6 @@
 ;; Magit
 (require 'magit)
 (global-set-key (kbd "C-x g") 'magit-status)
-
-;; Haskell mode
-(require 'haskell-interactive-mode)
-(require 'haskell-process)
-(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 
 ;; clj-refactor
 (require 'clj-refactor)
