@@ -53,6 +53,8 @@
     neotree
     eyebrowse
     avy
+    fiplr
+    ag
 
     ;;golang
     go-mode
