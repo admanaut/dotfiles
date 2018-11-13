@@ -31,35 +31,8 @@ else
   }
 fi
 
-if [ `which rbenv 2> /dev/null` ]; then
-  function ruby_prompt {
-    echo $(rbenv version-name)
-  }
-elif [ `which ruby 2> /dev/null` ]; then
-  function ruby_prompt {
-    echo $(ruby --version | cut -d' ' -f2)
-  }
-else
-  function ruby_prompt {
-    echo ""
-  }
-fi
-
-if [ `which rbenv-gemset 2> /dev/null` ]; then
-  function gemset_prompt {
-    local gemset=$(rbenv gemset active 2> /dev/null)
-    if [ $gemset ]; then
-      echo " ${gemset}"
-    fi
-  }
-else
-  function gemset_prompt {
-    echo ""
-  }
-fi
-
 if [ -n "$BASH" ]; then
-  export PS1='\[\033[32m\]\n[\s: \w] ($(ruby_prompt)$(gemset_prompt)) $(git_prompt)\n\[\033[31m\][\u@\h]\$ \[\033[00m\]'
+  export PS1='\[\033[32m\]\n[\s: \w] $(git_prompt)\n\[\033[31m\][\u@\h]\$ \[\033[00m\]'
 fi
 
 ############################################################
