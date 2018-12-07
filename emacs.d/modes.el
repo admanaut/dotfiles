@@ -9,13 +9,13 @@
 (add-hook 'html-mode-hook
    (lambda ()
      ;; Default indentation is usually 2 spaces, changing to 4.
-     (set (make-local-variable 'sgml-basic-offset) 4)))
+     (set (make-local-variable 'sgml-basic-offset) 2)))
 
 ;; SGML offset
-(setq sgml-basic-offset 4)
+(setq sgml-basic-offset 2)
 
 ;; Set standard indent size
-(setq standard-indent 4)
+(setq standard-indent 2)
 
 ;; Switch indent to spaces (not sure the difference)
 (setq-default indent-tabs-mode nil)

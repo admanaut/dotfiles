@@ -13,6 +13,15 @@
 (setq use-package-always-ensure t)
 (require 'use-package)
 
+;; this is how you use it
+;; (use-package PACKAGE_NAME
+;;   :bind   ;; key binding
+;;   :init   ;; execute code before the package is loaded
+;;   :config ;; execute code after the package is loaded
+;;   :hook   ;; use hooks
+;; )
+
+
 ;;; automatically recompile Emacs Lisp source files ;;;
 (use-package auto-compile
   :config (auto-compile-on-load-mode))
@@ -174,6 +183,19 @@
 
 
 ;;; === Haskell === ;;;
+(use-package haskell-mode
+  :init
+  (progn
+    (setq haskell-tags-on-save t))
+
+  :config
+  (progn
+    (add-hook 'haskell-mode-hook 'interactive-haskell-mode) ;; interact with a ghc repl
+    (add-hook 'haskell-mode-hook 'flycheck-mode) ;; linter as you type
+    (add-hook 'haskell-mode-hook 'company-mode) ;; autocomplete
+    )
+)
+
 ;;(require 'intero)
 ;;(add-hook 'haskell-mode-hook 'intero-mode)
 ;; TODO (setq intero-blacklist '("~/code/haskell-project/"))
