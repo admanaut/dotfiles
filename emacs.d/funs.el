@@ -49,3 +49,13 @@
                      (t (read-shell-command "Open current file with: ")))
                     " "
                     (shell-quote-argument buffer-file-name)))))
+
+
+(defun purescript-sort-and-align-imports ()
+  (interactive)
+  (save-excursion
+    (while (purescript-navigate-imports)
+      (progn
+        (purescript-sort-imports)
+        (purescript-align-imports)))
+    (purescript-navigate-imports-return)))

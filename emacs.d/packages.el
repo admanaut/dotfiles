@@ -36,101 +36,101 @@
 
 
 ;;; === IDO vertical === ;;;
-(use-package ido-vertical-mode)
-(ido-vertical-mode t)
-(setq ido-vertical-define-keys 'C-n-and-C-p-only)
+(use-package ido-vertical-mode
+  :init (setq ido-vertical-define-keys 'C-n-and-C-p-only)
+  :config (ido-vertical-mode t)
+  )
 
 ;;; === CLOJURE MODE === ;;;
-(setq clojure-indent-style :align-arguments) ;;:always-indent)
-;; ;; minor modes for cider/cider-repl
-;; (add-hook 'cider-repl-mode-hook #'company-mode)
-;; (add-hook 'cider-mode-hook #'company-mode)
-;; (add-hook 'cider-repl-mode-hook #'paredit-mode)
-;; (setq cider-repl-use-pretty-printing t)
-;; (setq cider-repl-print-length 50)
-;; ;; or do this is the repl (set! *print-length* 50)
-;; (setq cider-test-show-report-on-success t)
-;; (defun my-cider-mode-hook ()
-;;   ;; disable cider-refresh
-;;   ;; call cider-refresh manually using M-x - when needed
-;;   (define-key cider-mode-map (kbd "C-c C-x") nil))
-;; (add-hook 'cider-repl-mode-hook 'my-cider-mode-hook)
-;; minor modes for clojure-mode
-(add-hook 'clojure-mode-hook #'enable-paredit-mode)
-(add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
-(add-hook 'clojure-mode-hook #'company-mode)
+(use-package clojure-mode
+  :init
+  (setq clojure-indent-style :align-arguments) ;; or :always-indent
 
-;;; ====  Clj-Refactor ==== ;;;
-;; (require 'clj-refactor)
-;; (defun clj-refactor-clojure-mode ()
-;;     (clj-refactor-mode 1)
-;;     (yas-minor-mode 1) ; for adding require/use/import statements
-;;     ;; This choice of keybinding leaves cider-macroexpand-1 unbound
-;;     (cljr-add-keybindings-with-prefix "C-c C-m"))
-;; (add-hook 'clojure-mode-hook #'clj-refactor-clojure-mode)
+  :config
+  ;; minor modes for cider/cider-repl
+  (add-hook 'cider-repl-mode-hook #'company-mode)
+  (add-hook 'cider-mode-hook #'company-mode)
+  (add-hook 'cider-repl-mode-hook #'paredit-mode)
+  (setq cider-repl-use-pretty-printing t)
+  (setq cider-repl-print-length 50)
+  ;; or do this is the repl (set! *print-length* 50)
+  (setq cider-test-show-report-on-success t)
+  (defun my-cider-mode-hook ()
+    ;; disable cider-refresh
+    ;; call cider-refresh manually using M-x - when needed
+    (define-key cider-mode-map (kbd "C-c C-x") nil))
+  (add-hook 'cider-repl-mode-hook 'my-cider-mode-hook)
 
+  ;; minor modes for clojure-mode
+  (add-hook 'clojure-mode-hook #'enable-paredit-mode)
+  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'clojure-mode-hook #'company-mode)
+  )
 
 ;;; === Magit === ;;;
-(require 'magit)
-(global-set-key (kbd "C-x g") 'magit-status)
+(use-package magit
+  :bind ("C-x g" . magit-status))
 
 
 ;;; === Fiplr === ;;;
-(require 'fiplr)
-(global-set-key (kbd "C-c f f") 'fiplr-find-file)
+(use-package fiplr
+  :bind ("C-c f f" . fiplr-find-file))
 
 
 ;;; === Ace Window === ;;;
-(require 'ace-window)
-(global-set-key (kbd "C-x o") 'ace-window)
+(use-package ace-window
+  :bind ("C-x o" . ace-window))
 
 
 ;;; ==== Golden ratio ==== ;;;
-(require 'golden-ratio)
-(golden-ratio-mode 0)
-;; trigger golden-ratio
-(add-to-list 'golden-ratio-extra-commands 'ace-window)
-(add-to-list 'golden-ratio-extra-commands 'magit-status)
+(use-package golden-ratio
+  :config
+  (add-to-list 'golden-ratio-extra-commands 'ace-window)
+  (add-to-list 'golden-ratio-extra-commands 'magit-status))
 
 
 ;;; === find-file-at-point === ;;;
-(require 'ffap)
-(global-set-key (kbd "C-c p") 'find-file-at-point)
-
+(use-package ffap
+  :bind ("C-c p" . find-file-at-point))
 
 ;;; === GEISER === ;;;
-(require 'geiser)
-(setq geiser-mit-binary "scheme")
-(setq geiser-active-implementations '(mit racket))
-;; enable other minor modes for geiser repl
-(add-hook 'geiser-repl-mode-hook #'enable-paredit-mode)
-(add-hook 'geiser-repl-mode-hook #'rainbow-delimiters-mode)
-;; enabble other minor modes for geiser (buffer)
-(add-hook 'geiser-mode-hook #'enable-paredit-mode)
-(add-hook 'geiser-mode-hook #'rainbow-delimiters-mode)
-
+(use-package geiser
+  :init
+  (setq geiser-mit-binary "scheme")
+  (setq geiser-active-implementations '(mit racket))
+  ;; enable other minor modes for geiser repl
+  (add-hook 'geiser-repl-mode-hook #'enable-paredit-mode)
+  (add-hook 'geiser-repl-mode-hook #'rainbow-delimiters-mode)
+  ;; enabble other minor modes for geiser (buffer)
+  (add-hook 'geiser-mode-hook #'enable-paredit-mode)
+  (add-hook 'geiser-mode-hook #'rainbow-delimiters-mode)
+  )
 
 ;;; ===  AG === ;;;
-(require 'ag)
-(setq ag-reuse-buffers 't)
-(global-set-key (kbd "C-c a f") 'ag-files) ;; search [string] files [matching] in [dir]
-(global-set-key (kbd "C-c a p") 'ag-project) ;; search [string] in project (.git)
-(global-set-key (kbd "C-c a m") 'ag-project-files) ;; search [string] in project (.git) files [matching]
+(use-package ag
+  :init (setq ag-reuse-buffers 't)
+  :bind ( ("C-c p" . find-file-at-point)
+          ("C-c a f" . ag-files) ;; search [string] files [matching] in [dir]
+          ("C-c a p" . ag-project) ;; search [string] in project (.git)
+          ("C-c a m" . ag-project-files) ;; search [string] in project (.git) files [matching]
+          ))
 
 
 ;;; ===  Multiple-Cursors === ;;;
-(require 'multiple-cursors)
-;; active region that spans multiple lines
-(global-set-key (kbd "C-+") 'mc/edit-lines)
-;; add multiple cursors based on keywords in the buffer
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-?") 'mc/mark-all-like-this)
+(use-package multiple-cursors
+  :bind ( ("C-+" . mc/edit-lines) ;; active region that spans multiple lines
+          ;; based on keywords in the buffer
+          ("C->" . mc/mark-next-like-this)
+          ("C-<" . mc/mark-previous-like-this)
+          ("C-?" . mc/mark-all-like-this)
+          ))
 
 
 ;;; ===  NeoTree === ;;;
-(require 'neotree)
-(defun neotree-project-dir ()
+(use-package neotree
+  :bind ([f8] . neotree-project-dir)
+  :config
+  (defun neotree-project-dir ()
     "Open NeoTree using the git root."
     (interactive)
     (let ((project-dir (projectile-project-root))
@@ -142,27 +142,27 @@
                 (neotree-dir project-dir)
                 (neotree-find file-name)))
         (message "Could not find git project root."))))
-(global-set-key [f8] 'neotree-project-dir)
-
+)
 
 ;;; ===  eyebrowse === ;;;
 ;; window configurations manager
-(require 'eyebrowse)
-(eyebrowse-mode t)
+(use-package eyebrowse)
 
 
 ;;; === avy === ;;;
-(require 'avy)
-(global-set-key (kbd "C-;") 'avy-goto-char-timer)
-(global-set-key (kbd "C-:") 'avy-goto-char)
-(global-set-key (kbd "C-'") 'avy-goto-char-2)
+(use-package avy
+  :bind ( ("C-;" . avy-goto-char-timer)
+          ("C-:" . avy-goto-char)
+          ("C-'" . avy-goto-char-2)))
 
 
 ;;; === Markdown === ;;;
-(autoload 'markdown-mode "markdown-mode"
-  "Major mode for editing Markdown files" t)
-(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(use-package markdown-mode
+  :ensure t
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
 
 
 ;;; === Tiles === ;;;
@@ -170,52 +170,43 @@
 
 
 ;;; === Purescript ===
-(require 'psc-ide)
-(add-hook 'purescript-mode-hook
-  (lambda ()
-    (psc-ide-mode)
-    (company-mode)
-    (flycheck-mode)
-    (turn-on-purescript-indentation)))
-;; use exacutables relative to node_modules/.bin
-(setq psc-ide-use-npm-bin t)
-(setq psc-ide-add-import-on-completion 0)
+(use-package psc-ide
+  :init
+  ;; use exacutables relative to node_modules/.bin
+  (setq psc-ide-use-npm-bin t)
+  (setq psc-ide-add-import-on-completion 0)
+  :config
+  (add-hook 'purescript-mode-hook
+            (lambda ()
+              (psc-ide-mode)
+              (company-mode)
+              (flycheck-mode)
+              (turn-on-purescript-indentation))))
 
 
 ;;; === Haskell === ;;;
 (use-package haskell-mode
   :init
-  (progn
-    (setq haskell-tags-on-save t))
-
+  (setq haskell-tags-on-save t)
   :config
-  (progn
-    (add-hook 'haskell-mode-hook 'interactive-haskell-mode) ;; interact with a ghc repl
-    (add-hook 'haskell-mode-hook 'flycheck-mode) ;; linter as you type
-    (add-hook 'haskell-mode-hook 'company-mode) ;; autocomplete
-    )
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode) ;; interact with a ghc repl
+  (add-hook 'haskell-mode-hook 'flycheck-mode) ;; linter as you type
+  (add-hook 'haskell-mode-hook 'company-mode) ;; autocomplete
 )
 
-;;(require 'intero)
-;;(add-hook 'haskell-mode-hook 'intero-mode)
-;; TODO (setq intero-blacklist '("~/code/haskell-project/"))
-;; TODO (add-hook 'haskell-mode-hook 'intero-mode-whitelist)
-;; (add-hook 'haskell-mode-hook 'indent-guide-mode)
-
-
-;;; === Erlang === ;;;
-(require 'erlang-start)
+;;; haskell intero ;;;
+(use-package intero
+  :config
+  (add-hook 'haskell-mode-hook 'intero-mode)
+  (add-hook 'haskell-mode-hook 'intero-mode-whitelist)
+  (add-hook 'haskell-mode-hook 'indent-guide-mode))
 
 
 ;;; === Company === ;;;
 (use-package company
   :init
-  (progn
-    (setq company-idle-delay 0.3
-    )
-  )
-  :bind (("M-TAB" . company-complete))
-)
+  (setq company-idle-delay 0.3)
+  :bind (("M-TAB" . company-complete)))
 
 
 ;;; === Helm === ;;;
@@ -256,25 +247,23 @@
 (use-package helm-swoop
   :bind
   (("C-x c s" . helm-swoop)
-   ("C-x M-i" . helm-multi-swoop-all)
-  )
+   ("C-x M-i" . helm-multi-swoop-all))
   :config
-  (progn
-    ;; use I-Search then press M-i
-    (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
-    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop))
-)
+  ;; use I-Search then press M-i
+  (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+  (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop))
 
-;;;
+;;; describe binds ;;;
 (use-package helm-descbinds
   :defer t
   :bind (("C-h b" . helm-descbinds)
          ("C-h w" . helm-descbinds)))
 
-
+;;; sexy mode-line
 (use-package smart-mode-line
   :init
   (sml/setup))
+
 
 ;;; === Undo tree visualiser === ;;;
 (use-package undo-tree
@@ -292,8 +281,8 @@
   :diminish guide-key-mode
   :config
   (progn
-  (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
-  (guide-key-mode 1)))  ; Enable guide-key-mode
+    (setq guide-key/guide-key-sequence '("C-x r" "C-x 4" "C-c"))
+    (guide-key-mode 1)))  ; Enable guide-key-mode
 
 
 ;;; === Navigation === ;;;
@@ -302,8 +291,7 @@
   (("C-c w f" . windmove-right)
    ("C-c w b" . windmove-left)
    ("C-c w p". windmove-up)
-   ("C-c w n" . windmove-down)
-   ))
+   ("C-c w n" . windmove-down)))
 
 (bind-key "C-x p" 'pop-to-mark-command)
 (setq set-mark-command-repeat-pop t)
@@ -315,7 +303,7 @@
   :defer t
   :config (global-smartscan-mode t))
 
-
+;;
 (use-package expand-region
   :defer t
   :bind ("C-=" . er/expand-region))
@@ -324,3 +312,14 @@
 ;;; show git commit message at line
 (use-package git-messenger
   :bind (("C-x v m" . git-messenger:popup-message)))
+
+;; mode for editing bazel files like WORKSPACE and BUILD
+(use-package bazel-mode)
+
+;; typescript interactive development env
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
