@@ -1,3 +1,8 @@
 elpa
 .emacs.d/backups
 .emacs.d/auto-save-list
+.emacs.d/recentf
+.emacs.d/savehist
+.emacs.d/transient
+.emacs.d/url
+.emacs.d/.mc-lists.el
