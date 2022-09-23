@@ -47,6 +47,16 @@ alias showdotfiles="defaults write com.apple.finder AppleShowAllFiles -bool true
 alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 ############################################################
+## Git
+############################################################
+
+alias gs='git status'
+alias gl='git log --oneline'
+alias gb='git checkout -b'
+alias gd='git diff'
+alias gfp='git fetch -p'
+
+############################################################
 ## Miscellaneous
 ############################################################
 
