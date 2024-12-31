@@ -53,8 +53,9 @@ alias hidedotfiles="defaults write com.apple.finder AppleShowAllFiles -bool fals
 alias gs='git status'
 alias gl='git log --oneline'
 alias gb='git checkout -b'
-alias gd='git diff'
+alias gd='git diff HEAD'
 alias gfp='git fetch -p'
+alias gpr="git pull --rebase"
 
 ############################################################
 ## Miscellaneous
@@ -68,3 +69,13 @@ alias grep="grep --color=auto"
 alias flushdns='dscacheutil -flushcache'
 
 alias whichlinux='uname -a; cat /etc/*release; cat /etc/issue'
+
+############################################################
+## Docker
+############################################################
+
+alias dk="docker"
+alias dki="docker images -a"
+alias dkrmi="docker rmi --force $(docker images -aq)"
+alias dkc="docker ps -a"
+alias dkrmc="docker rm $(docker ps -aq)"
