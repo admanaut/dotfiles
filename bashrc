@@ -2,18 +2,16 @@
 ## Terminal behavior
 ############################################################
 
-# Change the window title of X terminals
-case $TERM in
-  xterm*|rxvt|Eterm|eterm)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
-    ;;
-  screen)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
-    ;;
-esac
+# # Change the window title of X terminals
+# case $TERM in
+#   xterm*|rxvt|Eterm|eterm)
+#     PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+#     ;;
+#   screen)
+#     PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/$HOME/~}\033\\"'
+#     ;;
+# esac
 
-# Show the git branch and dirty state in the prompt.
-# Borrowed from: http://henrik.nyh.se/2008/12/git-dirty-prompt
 function parse_git_dirty {
   [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working directory clean" ]] && echo "*"
 }
@@ -32,7 +30,8 @@ else
 fi
 
 if [ -n "$BASH" ]; then
-  export PS1='\[\033[32m\]\n[\s: \w] $(git_prompt)\n\[\033[31m\][\u@\h]\$ \[\033[00m\]'
+  # export PS1='\[\033[32m\]\n[\s: \w] $(git_prompt)\n\[\033[31m\][\u@\h]\$ \[\033[00m\]'
+  export PS1='\[\033[32m\]\n[\s: \w] \[\033[36m\]$(git_prompt)\n\$  \[\033[00m\]'
 fi
 
 ############################################################
@@ -45,7 +44,7 @@ shopt -s checkwinsize
 shopt -s histappend
 
 export PAGER="less"
-export EDITOR="emacs"
+export EDITOR="vim"
 
 ############################################################
 ## History
@@ -79,3 +78,19 @@ elif [ -e ~/.bash_completion ]; then
   # Fallback. This should be sourced by the above scripts.
   . ~/.bash_completion
 fi
+
+## source fzf if available
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+## MYSQL
+export MYSQL_PS1="\u [\d]> "
+
+## direnv
+eval "$(direnv hook bash)"
+
+
+## add Homebrew to the PATH
+export PATH=/opt/homebrew/bin:$PATH
+
+## disable turbo telemetry
+export TURBO_TELEMETRY_DISABLED=1
