@@ -1,0 +1,9 @@
+{
+    "redhat.telemetry.enabled": false,
+    "files.trimTrailingWhitespace": true,
+    "editor.minimap.enabled": false,
+    "editor.rulers": [
+        130
+    ],
+    "window.zoomLevel": 1
+}
